@@ -1,0 +1,57 @@
+# Byte-compiled / optimized / DLL files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.so
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.pyo
+db.sqlite3
+instance/
+.env
+
+# Django migrations
+*/migrations/*
+
+# Media and static files
+/media
+/staticfiles
+/static/
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# VS Code settings
+.vscode/
+
+# macOS
+.DS_Store
+
+# Node.js (se estiver usando no projeto)
+node_modules/
+
+# PyCharm settings
+.idea/
+
+# Coverage reports
+htmlcov/
+*.cover
+.coverage
+*.coverage.*
+.cache
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Test output
+coverage.xml
+nosetests.xml
+*.cover
+*.coverage
+*.log
