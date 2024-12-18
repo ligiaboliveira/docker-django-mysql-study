@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: project
+      MYSQL_USER: projectuser
+      MYSQL_PASSWORD: projectpassword
+    ports:
+      - "55788:3306"
+    volumes:
+      - ./db_data:/var/lib/mysql  # Persistência dos dados do MySQL
+      - ./mysql-init:/docker-entrypoint-initdb.d  # Scripts de inicialização opcionais
+    user: "1000:1000"  # Ajuste para o ID do seu usuário
+    networks:
+      - app-network
+
+  web:
+    build:
+      context: .  # Usando o Dockerfile para construir a imagem
+    container_name: django-app
+    volumes:
+      - .:/app  # Mapeia o código local para o container
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db  # Garante que o banco de dados seja iniciado antes do Django
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_NAME=project
+      - DB_USER=projectuser
+      - DB_PASSWORD=projectpassword
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db_data:  # Volume nomeado para persistir dados do MySQL
+
