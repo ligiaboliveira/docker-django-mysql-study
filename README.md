@@ -25,7 +25,8 @@ O projeto é composto por dois serviços principais:
 ### Comandos
 
 - Dentro da pasta project, rode
-> docker-compose up --build && docker-compose up
+> sudo chown -R 1000:1000 ./db_data
+> docker-compose up --build
 
 - Logo após, apenas entrar em [link da aplicação](http://127.0.0.1:8000/hello_mundo/)
 
